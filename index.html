@@ -15,7 +15,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(-45deg, #c33764, #1d2671, #6441A5, #2a0845);
       background-size: 400% 400%;
-      animation: gradient 12s ease infinite;
+      animation: gradient 15s ease infinite;
       color: #ffe6f0;
       overflow: hidden;
       opacity: 0;
@@ -43,11 +43,14 @@
       font-size: 2.7rem;
       margin-bottom: 20px;
       color: #ffd1ff;
+      text-shadow: 0 0 15px #ff80ab;
       animation: fadeIn 2s ease forwards;
     }
 
     p {
       font-size: 1.3rem;
+      color: #fff0f5;
+      text-shadow: 0 0 10px rgba(255,255,255,0.6);
       animation: fadeIn 3s ease forwards;
     }
 
@@ -58,11 +61,12 @@
 
     .heart {
       position: relative;
-      width: 120px;
-      height: 100px;
-      margin: 80px auto 20px; /* daha aşağıda */
+      width: 140px;
+      height: 120px;
+      margin: 80px auto 20px;
       transform: scale(1);
       animation: pulse 1.5s infinite;
+      filter: drop-shadow(0 0 15px #ff4d88);
     }
 
     .heart:before,
@@ -70,14 +74,14 @@
       content: "";
       position: absolute;
       top: 0;
-      width: 120px;
-      height: 100px;
-      border-radius: 60px 60px 0 0;
+      width: 140px;
+      height: 120px;
+      border-radius: 70px 70px 0 0;
       background: #ff3366;
     }
 
     .heart:before {
-      left: 60px;
+      left: 70px;
       transform: rotate(-45deg);
       transform-origin: 0 100%;
     }
@@ -116,19 +120,26 @@
     /* Fotoğraflar */
     .photo {
       position: absolute;
-      width: 120px;
-      border-radius: 15px;
+      width: 180px; /* büyütüldü */
+      border-radius: 20px;
       opacity: 0;
-      animation: fadePhoto 2s ease forwards;
+      animation: fadePhoto 2s ease forwards, floaty 6s ease-in-out infinite;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
 
-    .photo1 { top: 10%; left: 5%; animation-delay: 1s; }
-    .photo2 { bottom: 10%; right: 8%; animation-delay: 2s; }
-    .photo3 { top: 15%; right: 10%; animation-delay: 3s; }
+    .photo1 { top: 20px; left: 20px; animation-delay: 1s; }   /* sol üst */
+    .photo2 { bottom: 20px; right: 20px; animation-delay: 2s; } /* sağ alt */
+    .photo3 { top: 20px; right: 20px; animation-delay: 3s; }   /* sağ üst */
+    .photo4 { bottom: 20px; left: 20px; animation-delay: 4s; } /* sol alt */
 
     @keyframes fadePhoto {
       from {opacity: 0; transform: scale(0.8);}
       to {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
   </style>
 </head>
@@ -143,6 +154,7 @@
   <img src="images/resim1.jpg" class="photo photo1">
   <img src="images/resimm3.jpg" class="photo photo2">
   <img src="images/resimm4.jpg" class="photo photo3">
+  <img src="images/resimm2.jpg" class="photo photo4"> <!-- yeni eklendi -->
 
   <!-- Müzik -->
   <audio id="bg-music" autoplay loop>

@@ -112,9 +112,9 @@
     }
 
     .photo1 { top: 20px; left: 20px; animation-delay: 1s; }
-    .photo2 { bottom: 20px; right: 20px; animation-delay: 2s; }
+    .photo2 { bottom: 100px; right: 20px; animation-delay: 2s; }
     .photo3 { top: 20px; right: 20px; animation-delay: 3s; }
-    .photo4 { bottom: 20px; left: 20px; animation-delay: 4s; }
+    .photo4 { bottom: 100px; left: 20px; animation-delay: 4s; }
 
     @keyframes fadePhoto {
       from {opacity: 0; transform: scale(0.8);}
@@ -134,16 +134,15 @@
       }
 
       .photo1 { top: 10px; left: 10px; }
-      .photo2 { bottom: 10px; right: 10px; }
+      .photo2 { bottom: 80px; right: 10px; }
       .photo3 { top: 10px; right: 10px; }
-      .photo4 { bottom: 10px; left: 10px; }
+      .photo4 { bottom: 80px; left: 10px; }
     }
 
-    /* Müzik butonu */
+    /* Müzik butonu ortada kalbin altında */
     .music-control {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
+      display: block;
+      margin: 20px auto 0 auto;
       background: rgba(255, 255, 255, 0.2);
       border: none;
       padding: 10px 20px;
@@ -153,7 +152,7 @@
       cursor: pointer;
       backdrop-filter: blur(5px);
       transition: background 0.3s;
-      z-index: 10; /* fotoğrafların üstünde */
+      z-index: 10;
     }
 
     .music-control:hover {
@@ -166,6 +165,7 @@
     <h1 id="title">💖 Pusulam 💖</h1>
     <p id="message">Sen dünyanın en güçlü ve en cesur kadınısın. Her zorlukta ayağa kalkabilirsin.</p>
     <div class="heart"></div>
+    <button class="music-control" onclick="toggleMusic()">🎶 Müziği Aç</button>
   </div>
 
   <!-- Fotoğraflar -->
@@ -175,10 +175,9 @@
   <img src="images/resimm4.jpg" class="photo photo4">
 
   <!-- Müzik -->
-  <audio id="bg-music" autoplay loop>
+  <audio id="bg-music" loop>
     <source src="audio/seninmuzik.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-control" onclick="toggleMusic()">🔊 Müzik</button>
 
   <script>
     const messages = [
@@ -205,14 +204,14 @@
 
     // Müzik kontrol
     const music = document.getElementById("bg-music");
-    let isPlaying = true;
+    let isPlaying = false;
     function toggleMusic() {
       if (isPlaying) {
         music.pause();
-        event.target.textContent = "🔇 Sessiz";
+        event.target.textContent = "🎶 Müziği Aç";
       } else {
         music.play();
-        event.target.textContent = "🔊 Müzik";
+        event.target.textContent = "🔇 Müziği Kapat";
       }
       isPlaying = !isPlaying;
     }

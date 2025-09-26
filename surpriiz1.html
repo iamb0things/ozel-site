@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sana Özel 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #c33764, #1d2671, #6441A5, #2a0845);
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      color: #ffe6f0;
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(1.05);
+      animation: fadeZoomIn 2s ease forwards;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    @keyframes fadeZoomIn {
+      from {opacity: 0; transform: scale(1.1);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 60px 20px 20px;
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      margin-bottom: 20px;
+      color: #ffd1ff;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    p {
+      font-size: 1.3rem;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .heart {
+      position: relative;
+      width: 120px;
+      height: 100px;
+      margin: 80px auto 20px; /* daha aşağıda */
+      transform: scale(1);
+      animation: pulse 1.5s infinite;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 120px;
+      height: 100px;
+      border-radius: 60px 60px 0 0;
+      background: #ff3366;
+    }
+
+    .heart:before {
+      left: 60px;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .heart:after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    @keyframes pulse {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.1);}
+      100% {transform: scale(1);}
+    }
+
+    .music-control {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: #ffe6f0;
+      font-size: 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: background 0.3s;
+    }
+
+    .music-control:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Fotoğraflar */
+    .photo {
+      position: absolute;
+      width: 120px;
+      border-radius: 15px;
+      opacity: 0;
+      animation: fadePhoto 2s ease forwards;
+    }
+
+    .photo1 { top: 10%; left: 5%; animation-delay: 1s; }
+    .photo2 { bottom: 10%; right: 8%; animation-delay: 2s; }
+    .photo3 { top: 15%; right: 10%; animation-delay: 3s; }
+
+    @keyframes fadePhoto {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">💖 Pusulam 💖</h1>
+    <p id="message">Sen dünyanın en güçlü ve en cesur kadınısın. Her zorlukta ayağa kalkabilirsin.</p>
+    <div class="heart"></div>
+  </div>
+
+  <!-- Fotoğraflar -->
+  <img src="images/resim1.jpg" class="photo photo1">
+  <img src="images/resimm3.jpg" class="photo photo2">
+  <img src="images/resimm4.jpg" class="photo photo3">
+
+  <!-- Müzik -->
+  <audio id="bg-music" autoplay loop>
+    <source src="audio/seninmuzik.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-control" onclick="toggleMusic()">🔊 Müzik</button>
+
+  <script>
+    const messages = [
+      "Sen dünyanın en güçlü ve en cesur kadınısın. Her zorlukta ayağa kalkabilirsin.",
+      "Karşılaştığın engeller seni daha da benzersiz ve özel yapıyor.",
+      "Senin gülüşün, en karanlık günü bile aydınlatacak kadar güçlü.",
+      "Asla yalnız değilsin, her zaman yanında olacağım.",
+      "Sen benim en güzel ilham kaynağımsın. 💕"
+    ];
+
+    let current = 0;
+    const messageEl = document.getElementById("message");
+
+    function showNextMessage() {
+      messageEl.classList.remove("active");
+      setTimeout(() => {
+        current = (current + 1) % messages.length;
+        messageEl.textContent = messages[current];
+        messageEl.classList.add("active");
+      }, 1000);
+    }
+
+    setInterval(showNextMessage, 6000);
+
+    // Müzik kontrol
+    const music = document.getElementById("bg-music");
+    let isPlaying = true;
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        event.target.textContent = "🔇 Sessiz";
+      } else {
+        music.play();
+        event.target.textContent = "🔊 Müzik";
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // İlk mesaj için animasyon
+    messageEl.classList.add("active");
+  </script>
+</body>
+</html>

@@ -37,6 +37,8 @@
     .container {
       max-width: 800px;
       padding: 60px 20px 20px;
+      position: relative;
+      z-index: 1; /* yazılar hep önde */
     }
 
     h1 {
@@ -98,6 +100,46 @@
       100% {transform: scale(1);}
     }
 
+    /* Fotoğraflar */
+    .photo {
+      position: absolute;
+      width: 180px;
+      border-radius: 20px;
+      opacity: 0;
+      animation: fadePhoto 2s ease forwards, floaty 6s ease-in-out infinite;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      z-index: 0; /* yazının arkasında */
+    }
+
+    .photo1 { top: 20px; left: 20px; animation-delay: 1s; }
+    .photo2 { bottom: 20px; right: 20px; animation-delay: 2s; }
+    .photo3 { top: 20px; right: 20px; animation-delay: 3s; }
+    .photo4 { bottom: 20px; left: 20px; animation-delay: 4s; }
+
+    @keyframes fadePhoto {
+      from {opacity: 0; transform: scale(0.8);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Küçük ekranlar (telefon/tablet) */
+    @media (max-width: 768px) {
+      .photo {
+        width: 100px;
+        opacity: 0.7; /* yazıyı kapatmasın */
+      }
+
+      .photo1 { top: 10px; left: 10px; }
+      .photo2 { bottom: 10px; right: 10px; }
+      .photo3 { top: 10px; right: 10px; }
+      .photo4 { bottom: 10px; left: 10px; }
+    }
+
+    /* Müzik butonu */
     .music-control {
       position: absolute;
       bottom: 20px;
@@ -111,35 +153,11 @@
       cursor: pointer;
       backdrop-filter: blur(5px);
       transition: background 0.3s;
+      z-index: 10; /* fotoğrafların üstünde */
     }
 
     .music-control:hover {
       background: rgba(255, 255, 255, 0.4);
-    }
-
-    /* Fotoğraflar */
-    .photo {
-      position: absolute;
-      width: 180px; /* büyütüldü */
-      border-radius: 20px;
-      opacity: 0;
-      animation: fadePhoto 2s ease forwards, floaty 6s ease-in-out infinite;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    }
-
-    .photo1 { top: 20px; left: 20px; animation-delay: 1s; }   /* sol üst */
-    .photo2 { bottom: 20px; right: 20px; animation-delay: 2s; } /* sağ alt */
-    .photo3 { top: 20px; right: 20px; animation-delay: 3s; }   /* sağ üst */
-    .photo4 { bottom: 20px; left: 20px; animation-delay: 4s; } /* sol alt */
-
-    @keyframes fadePhoto {
-      from {opacity: 0; transform: scale(0.8);}
-      to {opacity: 1; transform: scale(1);}
-    }
-
-    @keyframes floaty {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
     }
   </style>
 </head>
@@ -152,9 +170,9 @@
 
   <!-- Fotoğraflar -->
   <img src="images/resim1.jpg" class="photo photo1">
-  <img src="images/resimm3.jpg" class="photo photo2">
-  <img src="images/resimm4.jpg" class="photo photo3">
-  <img src="images/resimm2.jpg" class="photo photo4"> <!-- yeni eklendi -->
+  <img src="images/resimm2.jpg" class="photo photo2">
+  <img src="images/resimm3.jpg" class="photo photo3">
+  <img src="images/resimm4.jpg" class="photo photo4">
 
   <!-- Müzik -->
   <audio id="bg-music" autoplay loop>
